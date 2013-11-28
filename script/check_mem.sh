@@ -31,14 +31,14 @@ then
 fi
 # read input
 while [[ $# -gt 0 ]]
-         do
-	         case "$1" in
-		               -w|--warning)
-			                     shift
-			                     warning=$1
-			        ;;
-	                  -c|--critical)
-	                 shift
+  do
+        case "$1" in
+               -w|--warning)
+               shift
+               warning=$1
+        ;;
+               -c|--critical)
+               shift
                critical=$1
         ;;
         esac
@@ -78,17 +78,17 @@ percent=`/usr/bin/dc $calc|/bin/sed 's/^\./0./'|/usr/bin/tr "." " "|/usr/bin/gaw
 #percent1=`/usr/bin/dc $calc`
 #echo "$percent1"
 if [[ "$percent" -le  $critical ]]
-               then
-	                       echo "CRITICAL - $free MB ($percent%) Free Memory"
-		                exit 2
-			fi
-	if [[ "$percent" -le  $warning ]]
-	               then
-		                       echo "WARNING - $free MB ($percent%) Free Memory"
-			                exit 1
-				fi
-		if [[ "$percent" -gt  $warning ]]
-		               then
-			                       echo "OK - $free MB ($percent%) Free Memory"
-				                exit 0
-					fi ]] ]] ]]"` ]] ]] ]]
+        then
+                echo "CRITICAL - $free MB ($percent%) Free Memory"
+                exit 2
+fi
+if [[ "$percent" -le  $warning ]]
+        then
+                echo "WARNING - $free MB ($percent%) Free Memory"
+                exit 1
+fi
+if [[ "$percent" -gt  $warning ]]
+        then
+                echo "OK - $free MB ($percent%) Free Memory"
+                exit 0
+fi
